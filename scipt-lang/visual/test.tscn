@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scipt-lang/visual/Graph.gd" type="Script" id=1]
+
+[node name="Graph" type="GraphEdit"]
+margin_right = 1024.0
+margin_bottom = 600.0
+right_disconnects = true
+scroll_offset = Vector2( -40, -49 )
+snap_distance = 5
+script = ExtResource( 1 )

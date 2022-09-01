@@ -1,0 +1,219 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/robo-logo.png" type="Texture" id=1]
+[ext_resource path="res://assets/early.png" type="Texture" id=2]
+[ext_resource path="res://assets/levelicons/testlevel.png" type="Texture" id=3]
+[ext_resource path="res://menu-ui/move.gd" type="Script" id=4]
+[ext_resource path="res://assets/ROBO-logo-trans.png" type="Texture" id=5]
+[ext_resource path="res://assets/logo-button.png" type="Texture" id=6]
+[ext_resource path="res://assets/loading.tscn" type="PackedScene" id=7]
+[ext_resource path="res://menu-ui/menu-music.gd" type="Script" id=8]
+[ext_resource path="res://menu-ui/about.gd" type="Script" id=9]
+[ext_resource path="res://menu-ui/datacopy.gd" type="Script" id=10]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0, 0, 1 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="section" type="Panel" parent="."]
+anchor_right = 0.25
+anchor_bottom = 1.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="Button" type="Button" parent="section"]
+anchor_top = 0.333
+anchor_right = 1.0
+anchor_bottom = 0.44
+margin_top = 0.199997
+margin_bottom = -3.05176e-05
+text = "Play"
+
+[node name="Button2" type="Button" parent="section"]
+anchor_top = 0.453
+anchor_right = 1.0
+anchor_bottom = 0.56
+margin_top = 0.199982
+text = "Settings (w.i.p)"
+
+[node name="Button4" type="Button" parent="section"]
+anchor_top = 0.573
+anchor_right = 1.0
+anchor_bottom = 0.68
+margin_top = 0.199982
+text = "About"
+
+[node name="Button3" type="Button" parent="section"]
+anchor_top = 0.867
+anchor_right = 1.0
+anchor_bottom = 0.973
+margin_top = -0.200012
+margin_bottom = 0.199951
+text = "Exit"
+
+[node name="TextureButton" type="TextureButton" parent="section"]
+anchor_right = 1.0
+anchor_bottom = 0.32
+margin_bottom = -1.52588e-05
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 6 )
+texture_disabled = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.25
+anchor_right = 0.992
+anchor_bottom = 3.0
+margin_right = 8.19196
+margin_bottom = -0.00012207
+script = ExtResource( 4 )
+
+[node name="Robo-logo-trans" type="Sprite" parent="Panel"]
+position = Vector2( 384, 128 )
+scale = Vector2( 0.223, 0.223 )
+texture = ExtResource( 5 )
+
+[node name="Early" type="Sprite" parent="Panel/Robo-logo-trans"]
+position = Vector2( 0, 538.117 )
+texture = ExtResource( 2 )
+
+[node name="Panel2" type="Panel" parent="Panel"]
+anchor_top = 0.333
+anchor_right = 1.0
+anchor_bottom = 0.667
+margin_top = 0.599976
+margin_bottom = -0.600098
+
+[node name="ItemList" type="ItemList" parent="Panel/Panel2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+items = [ "Test level", ExtResource( 3 ), false, "Level 1", ExtResource( 3 ), false, "Level 2", ExtResource( 3 ), false ]
+max_columns = 6
+same_column_width = true
+icon_mode = 0
+icon_scale = 0.145
+
+[node name="Panel3" type="Panel" parent="Panel"]
+anchor_top = 0.667
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.600098
+
+[node name="Label" type="Label" parent="Panel/Panel3"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 70.0
+margin_bottom = 30.0
+text = "Audio:"
+
+[node name="music" type="Label" parent="Panel/Panel3"]
+margin_left = 24.0
+margin_top = 40.0
+margin_right = 88.0
+margin_bottom = 64.0
+text = " Playlist:"
+align = 1
+valign = 1
+script = ExtResource( 8 )
+
+[node name="OptionButton" type="OptionButton" parent="Panel/Panel3/music"]
+margin_left = 96.0
+margin_right = 360.0
+margin_bottom = 24.0
+text = "Peace"
+items = [ "None", null, false, 0, null, "Peace", null, false, 1, null, "Electronic", null, false, 2, null ]
+selected = 1
+
+[node name="Node2D" parent="." instance=ExtResource( 7 )]
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -128.0
+margin_top = -24.0
+margin_right = -8.0
+margin_bottom = -8.0
+text = "Alfa 1"
+align = 2
+valign = 1
+
+[node name="WindowDialog" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -268.0
+margin_top = -204.0
+margin_right = 268.0
+margin_bottom = 204.0
+window_title = "About"
+script = ExtResource( 9 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowDialog"]
+margin_left = 4.0
+margin_top = 8.0
+margin_right = 532.0
+margin_bottom = 400.0
+text = "Game:
+Game creator: Mobilex1122
+Art: Mobilex1122
+Music: Punch Deck.
+
+
+Godot game engine:
+
+Project Founders:
+
+    Juan Linietsky (reduz)
+    Ariel Manzur (punto-)
+
+Lead Developer:
+
+    Juan Linietsky (reduz)
+
+Project Manager:
+
+    Rémi Verschelde (akien-mga)
+
+Developers:
+	Godot community"
+
+[node name="datacopy" type="WindowDialog" parent="."]
+visible = true
+margin_left = 448.0
+margin_top = 288.0
+margin_right = 560.0
+margin_bottom = 328.0
+popup_exclusive = true
+window_title = "Loading"
+script = ExtResource( 10 )
+
+[node name="Label2" type="Label" parent="datacopy"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -41.5
+margin_top = -7.0
+margin_right = 41.5
+margin_bottom = 7.0
+text = "Runing setup"
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="pressed" from="section/Button" to="Panel" method="_on_Button_pressed"]
+[connection signal="pressed" from="section/Button2" to="Panel" method="_on_Button2_pressed"]
+[connection signal="pressed" from="section/Button4" to="WindowDialog" method="_on_Button4_pressed"]
+[connection signal="pressed" from="section/Button3" to="Panel" method="_on_Button3_pressed"]
+[connection signal="pressed" from="section/TextureButton" to="Panel" method="_on_TextureButton_pressed"]
+[connection signal="item_activated" from="Panel/Panel2/ItemList" to="Panel" method="_on_ItemList_item_activated"]
+[connection signal="item_selected" from="Panel/Panel3/music/OptionButton" to="Panel/Panel3/music" method="_on_OptionButton_item_selected"]
+[connection signal="timeout" from="Timer" to="datacopy" method="_on_Timer_timeout"]
