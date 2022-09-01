@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://testmap.gd" type="Script" id=1]
+[ext_resource path="res://Position2D.gd" type="Script" id=2]
+[ext_resource path="res://robots/robot-1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://tiles/normal.tres" type="TileSet" id=4]
+[ext_resource path="res://tiles/end.tscn" type="PackedScene" id=5]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Node2D" parent="." instance=ExtResource( 5 )]
+position = Vector2( 4100, 800 )
+
+[node name="map" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="normal" type="TileMap" parent="map"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 200, 200 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+collision_use_parent = true
+collision_layer = 16
+collision_mask = 16
+format = 1
+tile_data = PoolIntArray( 131072, 6, 0, 131074, 0, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 0, 0, 131084, 11, 0, 131091, 10, 0, 131094, 0, 0, 131095, 0, 0, 131096, 0, 0, 131097, 0, 0, 131098, 0, 0, 131099, 0, 0, 131100, 0, 0, 131101, 0, 0, 131102, 0, 0, 131103, 11, 0, 262144, 9, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 11, 0, 327694, 13, 0, 327697, 12, 0, 327702, 10, 0, 327705, 0, 0, 327706, 0, 0, 327707, 0, 0, 327708, 0, 0, 327709, 7, 0, 327713, 9, 0, 393251, 0, 0, 393252, 0, 0, 393253, 0, 0, 393254, 0, 0, 393255, 0, 0, 393256, 0, 0, 393257, 7, 0, 458782, 13, 0, 524299, 13, 0, 524308, 12, 0, 524329, 8, 0, 589857, 0, 0, 589858, 0, 0, 589859, 0, 0, 589860, 0, 0, 589861, 0, 0, 589862, 0, 0, 589863, 0, 0, 589864, 0, 0, 655374, 0, 0, 655375, 0, 0, 655376, 0, 0, 655377, 0, 0, 655378, 0, 0, 655379, 0, 0 )
+
+[node name="robot1" parent="." instance=ExtResource( 3 )]
+position = Vector2( 237, 401 )
+rotation = 1.5708
+
+[node name="Position2D2" type="Position2D" parent="robot1"]
+rotation = -1.5708
+script = ExtResource( 2 )
+
+[node name="manual" type="RichTextLabel" parent="robot1/Position2D2"]
+margin_left = -512.0
+margin_top = 160.0
+margin_right = 512.0
+margin_bottom = 304.0
+rect_pivot_offset = Vector2( 512, -160 )
+text = "Manual:
+This game send data to files named <something>.sensor it can be float (0.1), int (1) or bool (True). I this example it is bool so True or False is put in the file.
+
+Your goal is to navigate the robot to the finish of the maze (In this prototype it is only this as example)
+To do this you need make a script in your prefered language to control the robot.
+
+If you don't know how i created simple script in cmd so you can get the idea (script is in code-example folder)"
+
+[connection signal="out" from="robot1" to="." method="_on_robot1_out"]

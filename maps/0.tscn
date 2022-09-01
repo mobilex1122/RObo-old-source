@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://testmap.gd" type="Script" id=1]
+[ext_resource path="res://Position2D.gd" type="Script" id=2]
+[ext_resource path="res://robots/robot-1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://tiles/normal.tres" type="TileSet" id=4]
+[ext_resource path="res://tiles/end.tscn" type="PackedScene" id=5]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="map" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="normal" type="TileMap" parent="map"]
+modulate = Color( 0, 0, 0, 1 )
+self_modulate = Color( 0.988235, 0.968627, 0.968627, 1 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 200, 200 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+collision_use_parent = true
+collision_layer = 16
+collision_mask = 16
+format = 1
+tile_data = PoolIntArray( 131071, 2, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 11, 0, 196607, 1, 0, 262143, 1, 0, 327679, 5, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 7, 0, 262153, 1, 0, 327689, 1, 0, 393222, 1, 0, 393225, 1, 0, 393245, 6, 0, 393247, 7, 0, 458758, 1, 0, 458761, 1, 0, 458771, 10, 0, 458774, 0, 0, 458775, 0, 0, 458776, 0, 0, 458777, 11, 0, 524294, 1, 0, 524297, 1, 0, 524317, 1, 0, 524320, 1, 0, 589830, 1, 0, 589833, 1, 0, 589853, 1, 0, 589856, 1, 0, 655366, 1, 0, 655369, 1, 0, 655379, 1, 0, 655382, 2, 0, 655383, 0, 0, 655384, 3, 0, 655387, 1, 0, 655389, 1, 0, 655392, 1, 0, 720902, 1, 0, 720905, 1, 0, 720915, 1, 0, 720918, 1, 0, 720920, 1, 0, 720923, 1, 0, 720925, 1, 0, 720928, 1, 0, 786438, 1, 0, 786441, 1, 0, 786451, 1, 0, 786454, 1, 0, 786456, 1, 0, 786459, 1, 0, 786461, 1, 0, 786464, 1, 0, 851974, 1, 0, 851977, 1, 0, 851987, 1, 0, 851990, 1, 0, 851992, 1, 0, 851995, 1, 0, 851997, 1, 0, 852000, 1, 0, 917510, 1, 0, 917513, 1, 0, 917523, 1, 0, 917526, 1, 0, 917528, 1, 0, 917531, 1, 0, 917533, 1, 0, 917536, 1, 0, 983046, 1, 0, 983049, 1, 0, 983059, 1, 0, 983062, 1, 0, 983064, 1, 0, 983067, 1, 0, 983069, 1, 0, 983072, 1, 0, 1048582, 1, 0, 1048585, 9, 0, 1048594, 8, 0, 1048598, 1, 0, 1048600, 1, 0, 1048603, 1, 0, 1048605, 1, 0, 1048608, 1, 0, 1114118, 1, 0, 1114123, 0, 0, 1114124, 0, 0, 1114125, 0, 0, 1114126, 0, 0, 1114127, 0, 0, 1114128, 0, 0, 1114129, 0, 0, 1114134, 1, 0, 1114136, 1, 0, 1114139, 5, 0, 1114140, 0, 0, 1114141, 4, 0, 1114144, 1, 0, 1179654, 13, 0, 1179668, 12, 0, 1179672, 13, 0, 1179678, 12, 0, 1310729, 0, 0, 1310730, 0, 0, 1310731, 0, 0, 1310732, 0, 0, 1310733, 0, 0, 1310734, 0, 0, 1310735, 0, 0, 1310736, 0, 0, 1310737, 0, 0, 1310738, 0, 0, 1310739, 0, 0, 1310747, 0, 0, 1310748, 0, 0, 1310749, 0, 0 )
+
+[node name="Node2D" parent="." instance=ExtResource( 5 )]
+position = Vector2( 3100, 799 )
+
+[node name="robot1" parent="." instance=ExtResource( 3 )]
+position = Vector2( 100, 296 )
+rotation = 1.5708
+
+[node name="Position2D2" type="Position2D" parent="robot1"]
+rotation = -1.5708
+script = ExtResource( 2 )
+
+[node name="manual" type="RichTextLabel" parent="robot1/Position2D2"]
+margin_left = -512.0
+margin_top = 160.0
+margin_right = 512.0
+margin_bottom = 304.0
+rect_pivot_offset = Vector2( 512, -160 )
+text = "Manual:
+This game send data to files named <something>.sensor it can be float (0.1), int (1) or bool (True). I this example it is bool so True or False is put in the file.
+
+Your goal is to navigate the robot to the finish of the maze (In this prototype it is only this as example)
+To do this you need make a script in your prefered language to control the robot.
+
+If you don't know how i created simple script in cmd so you can get the idea (script is in code-example folder)"
+
+[connection signal="out" from="robot1" to="." method="_on_robot1_out"]
